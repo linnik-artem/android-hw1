@@ -153,7 +153,7 @@
             android:layout_marginHorizontal="0dp"
             android:layout_marginBottom="180dp"
             android:backgroundTint="#48cae4"
-            android:onClick="search"
+            android:onClick="goWeb"
             android:text="Перейти"
             android:textColor="#023e8a"
             android:textSize="13sp"
