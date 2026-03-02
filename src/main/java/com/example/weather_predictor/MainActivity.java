@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private RadioGroup rg;
     private Button b;
 
-    private Dictionary<String, String> codes = new Hashtable<>();
+    private Dictionary<String, String> cities = new Hashtable<>();
     private Dictionary<String , String> periods = new Hashtable<>();
 
     private static final int R1 = 1;
@@ -49,11 +49,11 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        codes.put("Санкт-Петербург", "saint-petersburg");
-        codes.put("Нижний Новгород", "nizhny-novgorod");
-        codes.put("Москва", "moscow");
-        codes.put("Казань", "kazan");
-        codes.put("Воронеж", "Voronezh");
+        cities.put("Санкт-Петербург", "saint-petersburg");
+        cities.put("Нижний Новгород", "nizhny-novgorod");
+        cities.put("Москва", "moscow");
+        cities.put("Казань", "kazan");
+        cities.put("Воронеж", "Voronezh");
 
         textView = findViewById(R.id.inputEmail);
         b1 = findViewById(R.id.b1);
@@ -78,17 +78,14 @@ public class MainActivity extends AppCompatActivity {
         } else {
             int periodt = rg.getCheckedRadioButtonId();
             String period = periods.get(Integer.toString(periodt));
-            String city = codes.get(textView.getText().toString());
-            String url = "https://yandex.ru/pogoda/ru/" + city + "/" + period;
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            String city = cities.get(textView.getText().toString());
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://yandex.ru/pogoda/ru/" + city + "/" + period));
 
             try {
                 startActivity(intent);
             } catch (ActivityNotFoundException e) {
                 Log.d("Error", e.toString());
             }
-
-
         }
     }
 }
