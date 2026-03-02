@@ -24,7 +24,7 @@ import java.util.Hashtable;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final String[] CITIES = new String[]{"Москва", "Нижний Новгород", "Казань", "Санкт-Петербург", "Калининград"};
+    private final String[] CITIES = new String[]{"Москва", "Нижний Новгород", "Казань", "Санкт-Петербург", "Воронеж"};
     private AutoCompleteTextView textView;
     private RadioButton b1, b2, b3, b4;
     private RadioGroup rg;
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         codes.put("Нижний Новгород", "nizhny-novgorod");
         codes.put("Москва", "moscow");
         codes.put("Казань", "kazan");
-        codes.put("Калининград", "kaliningrad");
+        codes.put("Воронеж", "Voronezh");
 
         textView = findViewById(R.id.inputEmail);
         b1 = findViewById(R.id.b1);
@@ -73,12 +73,11 @@ public class MainActivity extends AppCompatActivity {
         periods.put("4", "details/weekend");
     }
 
-    public void search(View view){
+    public void goWeb(View view){
         if (rg.getCheckedRadioButtonId() == -1) {
         } else {
             int periodt = rg.getCheckedRadioButtonId();
             String period = periods.get(Integer.toString(periodt));
-
             String city = codes.get(textView.getText().toString());
             String url = "https://yandex.ru/pogoda/ru/" + city + "/" + period;
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
@@ -87,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             } catch (ActivityNotFoundException e) {
                 Log.d("Error", e.toString());
-                Toast.makeText(getApplicationContext(), "Could not proceed", Toast.LENGTH_LONG).show();
             }
 
 
